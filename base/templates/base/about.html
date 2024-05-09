@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Additional styles for the About page */
+
+        body {
+            font-family: 'Poppins', sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f8f8f8;
+        }
+
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 10px;
+            text-align: center;
+        }
+
+        main {
+            max-width: 800px;
+            margin: 20px auto;
+            padding: 20px;
+            background-color: #fff;
+            border-radius: 8px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+
+        h1,
+        h2 {
+            color: #333;
+        }
+
+        p {
+            line-height: 1.6;
+            color: #555;
+        }
+
+        img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 4px;
+            margin-top: 20px;
+        }
+    </style>
+    <title>About Us - Textiles & Shoes</title>
+</head>
+
+<body>
+
+    <div class="navbar">
+        <div class="logo">
+            <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+        </div>
+        <nav>
+            <ul id="MenuItems">
+                <li><a href="{% url 'app_name:index' %}">Home</a></li>
+                <li><a href="{% url 'app_name:product' %}">Products</a></li>
+                <li><a href="{% url 'app_name:about' %}">About Us</a></li>
+                <li><a href="{% url 'app_name:account' %}">Account</a></li>
+                <li><a href="{% url 'app_name:games' %}">Spin Games</a></li>
+            </ul>
+        </nav>
+        <a href="{% url 'app_name:cart' %}"><img src="{% static 'base/css/images/cart.png' %}" width="25px" height="25px"></a>
+        <img src="{% static 'base/css/images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+    </div>
+
+    <main>
+        <!-- Your About page content goes here -->
+        <p>Welcome to Red Store, your premier destination for high-quality textiles and stylish shoes.</p>
+
+        <p>At Textile & Shoes, we are passionate about providing our customers with the finest products. Our curated collection
+            includes a wide range of textiles, from luxurious fabrics to trendy shoes that suit every style.</p>
+        <br>
+        <p>Founded in 2024, we have been committed to delivering exceptional quality and unparalleled customer service. Our team
+            of experts carefully selects each item to ensure that our customers receive the best in comfort, style, and
+            durability.</p>
+        <br>
+        <p>Whether you are looking for elegant textiles to enhance your home decor or the latest footwear trends to elevate your
+            fashion game, we've got you covered. Our commitment to quality and customer satisfaction sets us apart in the world
+            of online shopping.</p>
+        <br>
+
+        <p>Explore our collection and experience the joy of shopping for premium textiles and shoes from the comfort of your home.
+            Thank you for choosing Textile & Shoes for all your fashion needs.</p>
+        <br><br>
+
+        <div class="partners">
+            <h2>Our Partners</h2>
+            <img class="partner-logo" src="{% static 'base/css/images/raymond.jpg' %}" alt="Partner 1" />
+            <img class="partner-logo" src="{% static 'base/css/images/peter.jpg' %}" alt="Partner 2" />
+            <img class="partner-logo" src="{% static 'base/css/images/adidas.jpg' %}" alt="Partner 3" />
+            <img class="partner-logo" src="{% static 'base/css/images/nike.jpg' %}" alt="Partner 4" />
+            <img class="partner-logo" src="{% static 'base/css/images/h&m.jpg' %}" alt="Our Team" />
+        </div>
+    </main>
+
+    <footer>
+        <div class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="footer-col-1">
+                        <h3>Download our App</h3>
+                        <p>Download App for Android and iOS Mobiles</p>
+                        <div class="app-logo">
+                            <img src="{% static 'base/css/images/play-store.png' %}">
+                            <img src="{% static 'base/css/images/app-store.png' %}">
+                        </div>
+                    </div>
+                    <div class="footer-col-2">
+                        <img src="{% static 'base/css/images/logo-white.png' %}">
+                        <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
+                    </div>
+                    <div class="footer-col-3">
+                        <h3>Useful Links</h3>
+                        <ul>
+                            <li>Coupons</li>
+                            <li>Return Policy</li>
+                            <li>Blog post</li>
+                            <li>Join Affiliates</li>
+                        </ul>
+                    </div>
+                    <div class="footer-col-4">
+                        <h3>Follow us</h3>
+                        <ul>
+                            <li>Facebook</li>
+                            <li>Twitter</li>
+                            <li>Instagram</li>
+                            <li>YouTube</li>
+                            <li>Threads</li>
+                        </ul>
+                    </div>
+                </div>
+                <hr>
+                <div class="copyright">
+                    <p>CopyRight 2023-Vinoth Website</p>
+                </div>
+            </div>
+        </div>
+    </footer>
+    <!--js toggle menu-->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+</body>
+
+</html>

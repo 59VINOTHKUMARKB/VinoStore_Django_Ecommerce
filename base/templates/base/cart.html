@@ -1,0 +1,223 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+    <head>
+        <meta charset="UTF-8">
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+        <link rel="stylesheet" href="{%static 'base/css/style.css'%}">
+        <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+        <link rel="preconnect" href="https://fonts.googleapis.com">
+        <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+        <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+        <title>Cart - RedStore</title>
+    </head>
+    <body>
+        <style>
+            select {
+                padding: 10px;
+                font-size: 16px;
+                border: 1px solid #ccc;
+                border-radius: 4px;
+                background-color: #fff;
+                color: #333;
+                appearance: none;
+                width: 200px;
+            }
+    
+            select option {
+                padding: 10px;
+                font-size: 14px;
+                background-color: #f5f5f5;
+                color: #333;
+            }
+    
+            select:hover {
+                background-color: #00c3ff75;
+            }
+    
+            input {
+                width: 100px;
+                height: 37px;
+            }
+        </style>
+    </head>
+    <body>
+    
+    
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="{% url 'app_name:index' %}""><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="{% url 'app_name:index' %}"">Home</a></li>
+                        <li><a href="{% url 'app_name:product' %}"">Products</a></li>
+                        <li><a href="{% url 'app_name:about' %}"">About</a></li>
+                        <li><a href="{% url 'app_name:account' %}"">Account</a></li>
+                        <li><a href="{% url 'app_name:games' %}"">Spin Games</a></li>
+
+                    </ul>
+                </nav>
+                <a href="{% url 'app_name:cart' %}"><img src="{% static 'base/css/images/cart.png' %}" width="25px" height="25px"></a>
+                <img src="{% static 'base/css/images/menu.jpg'%}" class="menu-icon" onclick="menutoggle()">
+
+            </div>
+            
+    </div>
+</div>
+
+<!--cart item details-->
+<div class="small-container cart-page">
+    <table id="cartTable">
+        <tr>
+            <th>Product</th>
+            <th>Quantity</th>
+            <th id="subtotal">SubTotal</th>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <a href="{% url 'app_name:productdetails' %}""><img src="{% static 'base/css/images/buy-1.jpg' %}" width="125px"></a>
+
+                                        <div>
+                        <p>Red Printed TShirt</p>
+                        <small class="price">Price:$50.00</small>
+                        <a href="#" onclick="removeCartItem(this)">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" value="1" onchange="updateCartItem(this)"></td>
+            <td class="subtotal">$50.00</td>
+        </tr>
+        <!-- ... (repeat the structure for other items) ... -->
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'base/css/images/buy-3.jpg ' %}">
+                    <div>
+                        <p>Black Pant</p>
+                        <small class="price">Price:$100.00</small>
+                        <a href="#" onclick="removeCartItem(this)">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" value="1" onchange="updateCartItem(this)"></td>
+            <td class="subtotal">$100.00</td>
+        </tr>
+        <tr>
+            <td>
+                <div class="cart-info">
+                    <img src="{% static 'base/css/images/buy-2.jpg' %}">
+                    <div>
+                        <p>Black Shoes</p>
+                        <small class="price">Price:$40.00</small>
+                        <a href="#" onclick="removeCartItem(this)">Remove</a>
+                    </div>
+                </div>
+            </td>
+            <td><input type="number" value="1" onchange="updateCartItem(this)"></td>
+            <td class="subtotal">$40.00</td>
+        </tr>
+    </table>
+    <div class="total-price">
+        <table>
+            <tr>
+                <td>SubTotal</td>
+                <td id="subTotal">$50.00</td>
+            </tr>
+            <tr>
+                <td>Tax (20%)</td>
+                <td id="tax">$10.00</td>
+            </tr>
+            <tr>
+                <td>Total</td>
+                <td id="total">$60.00</td>
+            </tr>
+        </table>
+    </div>
+</div>
+
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our App</h3>
+                    <p>Download App for Andriod and IOS Mobiles</p>
+                    <div class="app-logo">
+                        <img src="{% static 'base/css/images/play-store.png' %}">
+                        <img src="{% static 'base/css/images/app-store.png '%}">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Return Policy</li>
+                        <li>Blog post</li>
+                        <li>Join Affliates</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>FaceBook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                        <li>Threads</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright" >
+                <p>CopyRight 2023-Vinoth Website</p>
+            </div>
+        </div>
+    </div>
+    <!--js toggle menu-->
+    <script>
+        // your existing menu toggle function
+
+       
+
+        function updateCartItem(input) {
+            var quantity = input.value;
+            var priceElement = input.closest('tr').querySelector('.price');
+            var price = parseFloat(priceElement.innerText.replace('Price:$', ''));
+            var subtotalElement = input.closest('tr').querySelector('.subtotal');
+            var subtotal = quantity * price;
+            subtotalElement.innerText = '$' + subtotal.toFixed(2);
+            updateTotal();
+        }
+
+        function removeCartItem(link) {
+            link.closest('tr').remove();
+            updateTotal();
+        }
+
+        function updateTotal() {
+            var subTotal = 0;
+            document.querySelectorAll('.subtotal').forEach(function (subtotalElement) {
+                subTotal += parseFloat(subtotalElement.innerText.replace('$', ''));
+            });
+
+            var tax = subTotal * 0.2; // Assuming tax is 20%
+            var total = subTotal + tax;
+
+            document.getElementById('subTotal').innerText = '$' + subTotal.toFixed(2);
+            document.getElementById('tax').innerText = '$' + tax.toFixed(2);
+            document.getElementById('total').innerText = '$' + total.toFixed(2);
+        }
+    </script>
+    
+
+</body>
+</html>
+   

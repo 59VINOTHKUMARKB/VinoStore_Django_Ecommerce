@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <title>My First Website</title>
+</head>
+<body>
+    <div class="header">
+        <div class="container">
+            <div class="navbar">
+                <div class="logo">
+                    <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+                </div>
+                <nav>
+                    <ul id="MenuItems">
+                        <li><a href="{% url 'app_name:index' %}">Home</a></li>
+                        <li><a href="{% url 'app_name:product' %}">Products</a></li>
+                        <li><a href="{% url 'app_name:about' %}">About Us</a></li>
+                        <li><a href="{% url 'app_name:account' %}">Account</a></li>
+                        <li><a href="{% url 'app_name:games' %}">Spin Game</a></li>
+                    </ul>
+                </nav>
+                <a href="{% url 'app_name:cart' %}"><img src="{% static 'base/css/images/cart.png' %}" width="25px" height="25px"></a>
+                <img src="{% static 'base/css/images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+            </div>
+            <div class="row">
+                <div class="col-2">
+                    <h1>Unleash Your Unique Elegance</h1>
+                    <p>We invite you to explore a shopping experience like no other, where innovation and affordability converge, providing you with not just products, but a journey of self-expression. Unique taste meets our commitment to quality Om, where your style story begins.</p>
+                    <a href="" class="btn">Explore Now &#10132;</a>
+                </div>
+                <div class="col-2">
+                    <video autoplay loop muted id="video-background">
+                        <source src="{% static 'base/css/videos/production_id_5120455 (1080p).mp4' %}" type="video/mp4">
+                        Your browser does not support the video tag.
+                    </video>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="categories">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <img src="{% static 'base/css/images/Ted Pullin (2).jpg' %}">
+                </div>
+                <div class="col-3">
+                    <img src="{% static 'base/css/images/Shoes.jpg' %}">
+                </div>
+                <div class="col-3">
+                    <img src="{% static 'base/css/images/Mens Graphic Hoodies & Sweatshirts _ Mens Streetwear _ GOODFORNOTHING® (1).jpg' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="small-container">
+        <h2 class="title">Featured Products</h2>
+        <div class="row">
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-1.jpg' %}">
+                <h4>Red Printed T Shirt</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$50.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-3.jpg' %}">
+                <h4>Black Jeans Pant</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>$75.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-4.jpg' %}">
+                <h4>Dark Blue T Shirt</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$50.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-2.jpg' %}">
+                <h4>Black Shoes</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$100.00</p>
+            </div>
+        </div>
+
+        <h2 class="title">Latest Products</h2>
+        <div class="row">
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-6.jpg' %}">
+                <h4>Premium Black T Shirt</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>$50.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-12.jpg' %}">
+                <h4>Black Joggers</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>$75.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-10.jpg' %}">
+                <h4>Sports Shoe Red with Black</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>$50.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-5.jpg' %}">
+                <h4>White Casual Shoes</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$100.00</p>
+            </div>
+        </div>
+
+        <div class="row">
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-11.jpg' %}">
+                <h4>Grey Sneakers</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                </div>
+                <p>$60.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-12.jpg' %}">
+                <h4>Black Joggers</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>$75.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-9.jpg' %}">
+                <h4>Black Watch</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                </div>
+                <p>$250.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-8.jpg' %}">
+                <h4>Formal Black Watch</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+                </div>
+                <p>$250.00</p>
+            </div>
+        </div>
+    </div>
+
+    <div class="offer">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{% static 'base/css/images/exclusive.png' %}" class="offer-img">
+                </div>
+                <div class="col-2">
+                    <p>Exclusively Available on Om Store</p>
+                    <h1>Smart Band 5</h1>
+                    <small>Discover the future on your wrist with the MI Smart Band. Elevate your lifestyle with the perfect blend of style and functionality. <br>Immerse yourself in cutting-edge technology that goes beyond timekeeping.</small>
+                    <a href="" class="btn">Buy Now &#10132;</a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="testimonial">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Absolutely impressed with my Mi Band! The sleek design, comfortable fit, and incredible features make it a standout fitness tracker. The battery life is outstanding, lasting for days on a single charge.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="{% static 'base/css/images/user-1.png' %}">
+                    <h3>Sean Parker</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Absolutely impressed with my Mi Band! The sleek design, comfortable fit, and incredible features make it a standout fitness tracker. The battery life is outstanding, lasting for days on a single charge.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="{% static 'base/css/images/user-2.png' %}">
+                    <h3>Harry Potter</h3>
+                </div>
+                <div class="col-3">
+                    <i class="fa fa-quote-left"></i>
+                    <p>Absolutely impressed with my Mi Band! The sleek design, comfortable fit, and incredible features make it a standout fitness tracker. The battery life is outstanding, lasting for days on a single charge.</p>
+                    <div class="rating">
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star"></i>
+                        <i class="fa fa-star-half-o"></i>
+                        <i class="fa fa-star-o"></i>
+                    </div>
+                    <img src="{% static 'base/css/images/user-3.png' %}">
+                    <h3>Priyanka</h3>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="brands">
+        <div class="small-container">
+            <div class="row">
+                <div class="col-5">
+                    <img src="{% static 'base/css/images/logo-godrej.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'base/css/images/logo-oppo.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'base/css/images/logo-coca-cola.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'base/css/images/logo-paypal.png' %}">
+                </div>
+                <div class="col-5">
+                    <img src="{% static 'base/css/images/logo-philips.png' %}">
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our App</h3>
+                    <p>Download App for Android and IOS Mobiles</p>
+                    <div class="app-logo">
+                        <img src="{% static 'base/css/images/play-store.png' %}">
+                        <img src="{% static 'base/css/images/app-store.png' %}">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Return Policy</li>
+                        <li>Blog post</li>
+                        <li>Join Affiliates</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                        <li>Threads</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p>CopyRight 2023-Vinoth Website</p>
+            </div>
+        </div>
+    </div>
+
+
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+</body>
+</html>
+
