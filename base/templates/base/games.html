@@ -10,17 +10,14 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>Spin Wheel</title>
+    <title>Spin Wheel-VinoStore</title>
     <style>
-        /* Google Fonts */
         @import url('https://fonts.googleapis.com/css2?family=PT+Serif&display=swap');
-
-        /* Variables */
         :root {
             --white_color: rgb(255, 255, 255);
             --gold_color: rgb(255, 215, 0);
             --green_color: rgb(45, 252, 26);
-            --body_background: linear-gradient(to right, #141e30, #243b55);
+            --body_background: linear-gradient(to right,#ff523b #ff523b);
             --spin_background: linear-gradient(to right, #fc4a1a, #f7b733);
         }
 
@@ -33,8 +30,8 @@
         }
 
         body {
-            height: 100vh;
-            background: var(--body_background);
+            height: 90%;
+            background-color: #ef8a7d;
         }
 
         /* Styling Start */
@@ -72,12 +69,14 @@
             transform: rotate(270deg);
         }
         #gobtn{
-            padding:20px;
+            padding:2px;
             margin-left: 5px;
             margin-top: 5px;
-            background-color: #45B1E6;
             font-size:larger;
+            
+            background-color: white;
             border-radius: 5px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
         }
 
         #spin_btn {
@@ -120,7 +119,7 @@
             position: fixed;
             top: 10px;
             right: 10px;
-            background-color: rgba(255, 255, 255, 0.8);
+            background-color: white;
             padding: 10px;
             border-radius: 5px;
             box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
@@ -137,10 +136,6 @@
     </style>
 </head>
 <body>
-    <a href="{% url 'app_name:index' %}">
-        <button id="gobtn">Go to Home</button>
-    </a>
-    <h1>JACKPOT WHEEL</h1>
     <div class="container">
         
         <div class="wheel_box">
@@ -151,7 +146,7 @@
             </svg>
         </div>
         <div id="text"><p>Wheel Of Fortune</p></div>
-
+        <button style="margin-left: 36%;" class="btn">Claim reward</button>
         
     </div>
 
@@ -231,57 +226,86 @@
                 },
             },
         });
+        
 
         /* --------------- Display Value Based On The Angle --------------------- */
+        var prizeclaim="";
         const generateValue = (angleValue) => {
             for (let i of spinValues) {
                 if (angleValue >= i.minDegree && angleValue < i.maxDegree) {
                     text.innerHTML = `<p>Congratulations, You Have Won a ${i.value}!</p>`;
                     spinBtn.disabled = false;
                     updatePoints();
+                    const prize = i.value;
+                    prizeclaim=i.value;
+                    console.log(prize) 
                     break;
                 }
             }
         };
+        document.addEventListener('DOMContentLoaded', function() {
+    var claimRewardButtons = document.querySelectorAll('.btn');
+    
+    claimRewardButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+            var prizeText = document.getElementById("text").innerText.trim(); // Get the prize text from the text element
+            var prize = prizeText.substring(32);            
+            var xhr = new XMLHttpRequest();
+            xhr.open('POST', '{% url "app_name:update_rewards_table" %}', true);
+            xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+            xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+            xhr.onload = function() {
+                if (xhr.status >= 200 && xhr.status < 300) {
+                    var response = JSON.parse(xhr.responseText);
+                    if (response.success) {
+                        alert('Successfully Reward Claimed!')
+                        alert(response.message);  // Show success message
+                    } else {
+                        alert('Error: ' + response.message);  // Show error message
+                    }
+                } else {
+                    alert('Request failed: ' + xhr.status);  // Show error if request failed
+                }
+            };
+            xhr.onerror = function() {
+                alert('Request failed');  // Show error if request failed
+            };
+            xhr.send('prize=' + prize);
+        });
+    });
+});
 
-        /* --------------- Update points and spins left --------------------- */
-        const updatePoints = () => {
-            let currentPoints = parseInt(pointsElement.textContent);
-            pointsElement.textContent = currentPoints + 100;
-            let spinsLeft = parseInt(spinsLeftElement.textContent);
-            spinsLeftElement.textContent = spinsLeft - 1;
-        };
-        spinWheel.addEventListener("animationend", () => {
+
+
+
+    spinWheel.addEventListener("animationend", () => {
     arrow.style.display = "block";
 });
         /* --------------- Spinning Code --------------------- */
         let count = 0;
-        let resultValue = 101;
-        spinBtn.addEventListener("click", () => {
-            spinBtn.disabled = true;
-            text.innerHTML = `<p>Best Of Luck!</p>`;
-            arrow.style.display = "none"; // Hide the arrow before spinning
-            let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
-            let rotationInterval = window.setInterval(() => {
-                spinChart.options.rotation = spinChart.options.rotation + resultValue;
-                spinChart.update();
-                if (spinChart.options.rotation >= 360) {
-                    count += 1;
-                    resultValue -= 5;
-                    spinChart.options.rotation = 0;
-                } else if (count > 15 && spinChart.options.rotation == randomDegree) {
-                    generateValue(randomDegree);
-                    clearInterval(rotationInterval);
-                    count = 0;
-                    resultValue = 101;
-                }
-            }, 10);
-        });
+let resultValue = 101;
+let rotationInterval;
 
-        // Show the arrow after the spinning animation is complete
-        // spinWheel.addEventListener("animationend", () => {
-        //     arrow.style.display = "block";
-        // });
+spinBtn.addEventListener("click", () => {
+    spinBtn.disabled = true;
+    text.innerHTML = `<p>Best Of Luck!</p>`;
+    arrow.style.display = "none"; // Hide the arrow before spinning
+    let randomDegree = Math.floor(Math.random() * (355 - 0 + 1) + 0);
+    let rotationCount = 0; // Track the number of rotations
+    rotationInterval = window.setInterval(() => {
+        spinChart.options.rotation = spinChart.options.rotation + resultValue;
+        spinChart.update();
+        rotationCount++; 
+        if (rotationCount >= 200) {
+            clearInterval(rotationInterval);
+            generateValue(randomDegree);
+            count = 0;
+            resultValue = 101;
+        } else if (spinChart.options.rotation == randomDegree) {
+            clearInterval(rotationInterval); 
+        }
+    }, 10);
+});
     </script>
-</body>
+    </body>
 </html>

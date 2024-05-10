@@ -10,8 +10,8 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+
     <style>
-        /* Additional styles for the About page */
 
         body {
             font-family: 'Poppins', sans-serif;
@@ -53,21 +53,22 @@
             margin-top: 20px;
         }
     </style>
-    <title>About Us - Textiles & Shoes</title>
+    <title>About Us - Textiles & Shoes -VinoStore</title>
 </head>
 
 <body>
 
     <div class="navbar">
         <div class="logo">
-            <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+            <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/Vinostore.jpeg' %}" width="125px"></a>
         </div>
         <nav>
             <ul id="MenuItems">
                 <li><a href="{% url 'app_name:index' %}">Home</a></li>
                 <li><a href="{% url 'app_name:product' %}">Products</a></li>
                 <li><a href="{% url 'app_name:about' %}">About Us</a></li>
-                <li><a href="{% url 'app_name:account' %}">Account</a></li>
+                <li><a href="{% url 'app_name:registration' %}">Register</a></li>
+                    <li><a href="{% url 'app_name:login' %}">Login</a></li>
                 <li><a href="{% url 'app_name:games' %}">Spin Games</a></li>
             </ul>
         </nav>
@@ -77,7 +78,7 @@
 
     <main>
         <!-- Your About page content goes here -->
-        <p>Welcome to Red Store, your premier destination for high-quality textiles and stylish shoes.</p>
+        <p>Welcome to Vinoth Stores, your premier destination for high-quality textiles and stylish shoes.</p>
 
         <p>At Textile & Shoes, we are passionate about providing our customers with the finest products. Our curated collection
             includes a wide range of textiles, from luxurious fabrics to trendy shoes that suit every style.</p>
@@ -118,7 +119,7 @@
                         </div>
                     </div>
                     <div class="footer-col-2">
-                        <img src="{% static 'base/css/images/logo-white.png' %}">
+                        <img src="{% static 'base/css/images/Vinostore.jpeg' %}">
                         <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
                     </div>
                     <div class="footer-col-3">

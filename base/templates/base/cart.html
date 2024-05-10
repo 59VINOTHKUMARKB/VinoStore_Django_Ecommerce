@@ -10,9 +10,8 @@
         <link rel="preconnect" href="https://fonts.googleapis.com">
         <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-        <title>Cart - RedStore</title>
-    </head>
-    <body>
+        <title>Cart - VinoStore</title>
+        
         <style>
             select {
                 padding: 10px;
@@ -43,19 +42,44 @@
         </style>
     </head>
     <body>
-    
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/html2pdf.js/0.9.3/html2pdf.bundle.min.js"></script>
+        <script>
+        function downloadPDF() {
+        var element = document.getElementById('cartTable');
+        var opt = {
+            margin:       1,
+            filename:     'cart.pdf',
+            image:        { type: 'jpeg', quality: 0.98 },
+            html2canvas:  { scale: 2 },
+            jsPDF:        { unit: 'in', format: 'letter', orientation: 'portrait' }
+        };
+        var userName = "Hello, Dear Customer Your Bill is Here";
+        var vinocartLogo ="../base/css/images/Vinostore.jpeg";
+
+        var userNameElement = document.createElement('div');
+        userNameElement.textContent =  userName;
+
+        var logoElement = document.createElement('img');
+        logoElement.src = vinocartLogo;
+        logoElement.style.width = "100px";
+        element.prepend(userNameElement);
+        element.parentNode.insertBefore(logoElement, element); 
+        html2pdf().set(opt).from(element).save();
+    }
+</script>
     
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="{% url 'app_name:index' %}""><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+                    <a href="{% url 'app_name:index' %}""><img src="{% static 'base/css/images/Vinostore.jpeg' %}" width="125px"></a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="{% url 'app_name:index' %}"">Home</a></li>
                         <li><a href="{% url 'app_name:product' %}"">Products</a></li>
                         <li><a href="{% url 'app_name:about' %}"">About</a></li>
-                        <li><a href="{% url 'app_name:account' %}"">Account</a></li>
+                        <li><a href="{% url 'app_name:registration' %}">Register</a></li>
+                        <li><a href="{% url 'app_name:login' %}">Login</a></li>
                         <li><a href="{% url 'app_name:games' %}"">Spin Games</a></li>
 
                     </ul>
@@ -69,7 +93,7 @@
 </div>
 
 <!--cart item details-->
-<div class="small-container cart-page">
+<div class="small-container cart-page" id="cartTable">
     <table id="cartTable">
         <tr>
             <th>Product</th>
@@ -81,7 +105,7 @@
                 <div class="cart-info">
                     <a href="{% url 'app_name:productdetails' %}""><img src="{% static 'base/css/images/buy-1.jpg' %}" width="125px"></a>
 
-                                        <div>
+                    <div>
                         <p>Red Printed TShirt</p>
                         <small class="price">Price:$50.00</small>
                         <a href="#" onclick="removeCartItem(this)">Remove</a>
@@ -91,11 +115,11 @@
             <td><input type="number" value="1" onchange="updateCartItem(this)"></td>
             <td class="subtotal">$50.00</td>
         </tr>
-        <!-- ... (repeat the structure for other items) ... -->
+
         <tr>
             <td>
                 <div class="cart-info">
-                    <img src="{% static 'base/css/images/buy-3.jpg ' %}">
+                    <a href="{% url 'app_name:productdetails2' %}""><img src="{% static 'base/css/images/buy-3.jpg ' %}"></a>
                     <div>
                         <p>Black Pant</p>
                         <small class="price">Price:$100.00</small>
@@ -109,7 +133,7 @@
         <tr>
             <td>
                 <div class="cart-info">
-                    <img src="{% static 'base/css/images/buy-2.jpg' %}">
+                    <a href="{% url 'app_name:productdetails3' %}"><img src="{% static 'base/css/images/buy-2.jpg' %}"></a>
                     <div>
                         <p>Black Shoes</p>
                         <small class="price">Price:$40.00</small>
@@ -138,6 +162,8 @@
         </table>
     </div>
 </div>
+<button style="margin-left: 80%;" class="btn" onclick="downloadPDF()">Download PDF</button>
+
 
     <!--footer-->
     <div class="footer">
@@ -152,7 +178,7 @@
                     </div>
                 </div>
                 <div class="footer-col-2">
-                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <img src="{% static 'base/css/images/Vinostore.jpeg' %}">
                     <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
                 </div>
                 <div class="footer-col-3">
@@ -182,11 +208,14 @@
         </div>
     </div>
     <!--js toggle menu-->
-    <script>
+    
+
         // your existing menu toggle function
 
-       
+            
 
+
+    <script>
         function updateCartItem(input) {
             var quantity = input.value;
             var priceElement = input.closest('tr').querySelector('.price');

@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+{% load static %}
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #333;
+            appearance: none;
+            width: 200px;
+        }
+
+        select option {
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        select:hover {
+            background-color: #00c3ff75;
+        }
+
+        input {
+            width: 100px;
+            height: 37px;
+        }
+
+    </style>
+    <style>
+    </style>
+    <title>Account - RedStore</title>
+</head>
+
+<body>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="{% url 'app_name:index' %}">Home</a></li>
+                    <li><a href="{% url 'app_name:product' %}">Products</a></li>
+                    <li><a href="{% url 'app_name:about' %}">About</a></li>
+                    <li><a href="{% url 'app_name:registration' %}">Account</a></li>
+                    <li><a href="{% url 'app_name:login' %}">Login</a></li>
+                    <li><a href="{% url 'app_name:games' %}">Spin Games</a></li>
+                </ul>
+            </nav>
+            <a href="{% url 'app_name:cart' %}"><img src="{% static 'base/css/images/cart.png' %}" width="25px" height="25px"></a>
+            <img src="{% static 'base/css/images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+    </div>
+
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="{% static 'base/css/images/frontimg2.png' %}" width="100%">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Register</span>
+                            <hr id="indicator">
+                        </div>
+                        <!-- Login Form -->
+                        <form id="login-form" method="post" action="{% url 'app_name:account' %}">
+                            {% csrf_token %}
+                            <input type="text" name="login-username" placeholder="User Name" autocomplete="username">
+                            <input type="password" name="login-password" placeholder="Password" autocomplete="current-password">
+                            <button type="submit" class="btn">Login</button>
+                        </form>
+                        {% if messages %}
+                            {% for message in messages %}
+                                {% if 'login' in message.tags %}
+                                    <div class="login-error-message">{{ message }}</div>
+                                {% endif %}
+                            {% endfor %}
+                        {% endif %}
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our App</h3>
+                    <p>Download App for Android and IOS Mobiles</p>
+                    <div class="app-logo">
+                        <img src="{% static 'base/css/images/play-store.png' %}">
+                        <img src="{% static 'base/css/images/app-store.png' %}">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Return Policy</li>
+                        <li>Blog post</li>
+                        <li>Join Affiliates</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>Facebook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                        <li>Threads</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p>CopyRight 2023-Vinoth Website</p>
+            </div>
+        </div>
+    </div>
+
+    <!--js toggle menu-->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+    <!--js for toggle form-->
+    <script>
+        var loginform = document.getElementById("login-form");
+var regform = document.getElementById("Regform");
+var indicator = document.getElementById("indicator");
+
+loginform.style.transform = "translateX(300px)";
+    regform.style.transform = "translateX(300px)";
+    indicator.style.transform = "translateX(0px)";
+
+function register() {
+    regform.style.transform = "translateX(0px)";
+    loginform.style.transform = "translateX(0px)";
+    indicator.style.transform = "translateX(100px)";
+}
+
+function login() {
+    regform.style.transform = "translateX(300px)";
+    loginform.style.transform = "translateX(300px)";
+    indicator.style.transform = "translateX(0px)";
+}
+
+    document.addEventListener('DOMContentLoaded', function () {
+        // Hide messages on page load
+        document.querySelectorAll('.error-message').forEach(function (message) {
+            message.style.display = 'none';
+        });
+    });
+
+    // Function to show the messages when needed
+    function showMessages(formType, errorMessage) {
+        // Hide all messages first
+        document.querySelectorAll('.error-message').forEach(function (message) {
+            message.style.display = 'none';
+        });
+
+        // Show messages related to the specified form type
+        var formErrorMessage = document.querySelector('.' + formType + '-error-message');
+        formErrorMessage.style.display = 'block';
+        formErrorMessage.innerHTML = errorMessage;
+    }
+
+    </script>
+
+</body>
+
+</html>

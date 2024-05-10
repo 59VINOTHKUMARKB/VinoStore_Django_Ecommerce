@@ -158,7 +158,7 @@ color:#ff523b;
 }
 small{
     color:#555;
-}
+}   
 .testimonial{
     padding-top:100px;
 }
@@ -429,7 +429,7 @@ td:last-child{
 .form-container{
     background-color: #fff;
     width:300px;
-    height:400px;
+    height:200px;
     position:relative;
     text-align:center;
     padding:20px 0;
@@ -453,7 +453,7 @@ td:last-child{
     max-width:300px;
     padding:0 20px;
     position:absolute;
-    top:130px;
+    top:-40px;
     transition:transform 1s;
 }
 form input{
@@ -476,6 +476,10 @@ form .btn:focus{
 #login-form{
     left:-300px;
 
+}
+#logout-form{
+    left: -300px;
+    bottom: 200px;
 }
 #Regform{
     left:0;

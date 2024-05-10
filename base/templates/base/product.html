@@ -11,7 +11,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <title>All Products - RedStore</title>
+    <title>All Products - VinoStore</title>
     <style>
         /* Style for the select element */
         select {
@@ -36,6 +36,20 @@
         select:hover {
             background-color: #00c3ff75; /* Change the background color on hover */
         }
+
+        .btnorder
+        {
+            display:inline-block ;
+            background:#ff523b;
+            color:#fff;
+            padding:8px 30px;
+            margin:30px 0;
+            border-radius:30px;
+            transition:background 0.5s;
+        }
+        .btnorder:hover{
+            background:#563434;
+        }
     </style>
 </head>
 
@@ -45,14 +59,15 @@
         <div class="navbar">
             <div class="logo">
                 <a href="{% url 'index' %}"><img
-                        src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+                        src="{% static 'base/css/images/Vinostore.jpeg' %}" width="125px"></a>
             </div>
             <nav>
                 <ul id="MenuItems">
                     <li><a href="{% url 'app_name:index' %}">Home</a></li>
-                    <li><a href="{% url 'app_name:product' %}">Products</a></li>
+                    <li><a href=" ">Products</a></li>
                     <li><a href="{% url 'app_name:about' %}">About</a></li>
-                    <li><a href="{% url 'app_name:account' %}">Account</a></li>
+                    <li><a href="{% url 'app_name:registration' %}">Register</a></li>
+                    <li><a href="{% url 'app_name:login' %}">Login</a></li>
                     <li><a href="{% url 'app_name:games' %}">Spin Games</a></li>
                 </ul>
             </nav>
@@ -75,21 +90,29 @@
         </div>
 
         <div class="row">
-            <div class="col-4">
-                <img src="{% static 'base/css/images/product-1.jpg' %}">
-                <h4>Red Printed T Shirt</h4>
-                <div class="rating">
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star"></i>
-                    <i class="fa fa-star-o"></i>
-                </div>
-                <p>$50.00</p>
-            </div>
-            <div class="col-4">
+            {% for product in products %}
+                {% if forloop.counter <= 6 %}
+                    <div class="col-3">
+                        <img src="{% static 'base/css/images/product-' %}{{ forloop.counter }}.jpg">
+                        <h4>{{ product.product_name }}</h4>
+                        <div class="rating">
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star"></i>
+                            <i class="fa fa-star-o"></i>
+                        </div>
+                        <h4>${{ product.price }}</h4>
+                        <button class="btn" data-product-id="{{ product.product_id }}">Add to Cart</button>
+                        <button class="btnorder" data-product-id="{{ product.product_id }}">Order Now</button>
+                    </div>
+                {% endif %}
+            {% endfor %}
+        </div>
+        
+            <!-- <div class="col-4">
                 <img src="{% static 'base/css/images/product-3.jpg' %}">
-                <h4>Black Jeans Pant</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -97,11 +120,11 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                 </div>
-                <p>$75.00</p>
+                <p>${{product.price}}</p>
             </div>
             <div class="col-4">
                 <img src="{% static 'base/css/images/product-4.jpg' %}">
-                <h4>Dark Blue T Shirt</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -109,11 +132,11 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$50.00</p>
+                <p>${{product.price}}</p>
             </div>
             <div class="col-4">
                 <img src="{% static 'base/css/images/product-2.jpg' %}">
-                <h4>Black Shoes</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -121,16 +144,14 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$100.00</p>
+                <p>${{product.price}}</p>
             </div>
         </div>
 
         <div class="row">
-            <!-- Add more product items with similar structure -->
-
             <div class="col-4">
                 <img src="{% static 'base/css/images/product-5.jpg' %}">
-                <h4>White Sneakers</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -138,12 +159,12 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star-half-o"></i>
                 </div>
-                <p>$60.00</p>
+                <p>${{product.price}}</p>
             </div>
 
             <div class="col-4">
                 <img src="{% static 'base/css/images/product-6.jpg' %}">
-                <h4>Premium Black T Shirt</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -151,12 +172,12 @@
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
                 </div>
-                <p>$50.00</p>
+                <p>${{product.price}}</p>
             </div>
 
             <div class="col-4">
                 <img src="{% static 'base/css/images/product-7.jpg' %}">
-                <h4>Blue Casual Shoes</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -164,12 +185,12 @@
                     <i class="fa fa-star-half-o"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$80.00</p>
+                <p>${{product.price}}</p>
             </div>
 
             <div class="col-4">
                 <img src="{% static 'base/css/images/product-8.jpg' %}">
-                <h4>Formal Black Watch</h4>
+                <h4>{{product.product_name}}</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
                     <i class="fa fa-star"></i>
@@ -177,9 +198,8 @@
                     <i class="fa fa-star-half-o"></i>
                     <i class="fa fa-star-o"></i>
                 </div>
-                <p>$250.00</p>
-            </div>
-        </div>
+                <p>${{product.price}}</p>
+            </div> -->
 
         <div class="page-btn">
             <span>1</span>
@@ -191,7 +211,6 @@
         </div>
     </div>
 
-    <!--footer-->
     <div class="footer">
         <div class="container">
             <div class="row">
@@ -204,7 +223,7 @@
                     </div>
                 </div>
                 <div class="footer-col-2">
-                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <img src="{% static 'base/css/images/Vinostore.jpeg' %}">
                     <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
                 </div>
                 <div class="footer-col-3">
@@ -234,7 +253,6 @@
         </div>
     </div>
 
-    <!--js toggle menu-->
     <script>
         var MenuItems = document.getElementById("MenuItems");
         MenuItems.style.maxHeight = "0px";
@@ -247,6 +265,79 @@
             }
         }
     </script>
+    <script>
+    document.addEventListener('DOMContentLoaded', function() {
+        var addToCartButtons = document.querySelectorAll('.btn');
+    
+        // Attach click event listener to each button
+        addToCartButtons.forEach(function(button) {
+            button.addEventListener('click', function() {
+                var productId = this.getAttribute('data-product-id');
+    
+                // Send AJAX request to Django view
+                var xhr = new XMLHttpRequest();
+                xhr.open('POST', '{% url "app_name:add_to_cart" %}', true);
+                xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                xhr.onload = function() {
+                    if (xhr.status >= 200 && xhr.status < 300) {
+                        var response = JSON.parse(xhr.responseText);
+                        if (response.success) {
+                            alert('Successfully Added!')
+                            alert(response.message);  // Show success message
+                        } else {
+                            alert('Error: ' + response.message);  // Show error message
+                        }
+                    } else {
+                        alert('Request failed: ' + xhr.status);  // Show error if request failed
+                    }
+                };
+                xhr.onerror = function() {
+                    alert('Request failed');  // Show error if request failed
+                };
+                xhr.send('product_id=' + productId);
+            });
+        });
+    });
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var addToCartButtons = document.querySelectorAll('.btnorder');
+        
+            // Attach click event listener to each button
+            addToCartButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var productId = this.getAttribute('data-product-id');
+        
+                    // Send AJAX request to Django view
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '{% url "app_name:add_to_order" %}', true);
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                alert('Successfully Ordered!')
+                                alert(response.message);  // Show success message
+                            } else {
+                                alert('Error: ' + response.message);  // Show error message
+                            }
+                        } else {
+                            alert('Request failed: ' + xhr.status);  // Show error if request failed
+                        }
+                    };
+                    xhr.onerror = function() {
+                        alert('Request failed');  // Show error if request failed
+                    };
+                    xhr.send('product_id=' + productId);
+                });
+            });
+        });
+        </script>
+
+
+    
 
 </body>
 

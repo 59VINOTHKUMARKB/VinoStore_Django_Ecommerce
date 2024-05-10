@@ -78,7 +78,19 @@ p{
 .btn:hover{
     background:#563434;
 }
-
+.btnorder
+{
+    display:inline-block ;
+    background:#ff523b;
+    color:#fff;
+    padding:8px 30px;
+    margin:30px 0;
+    border-radius:30px;
+    transition:background 0.5s;
+}
+.btnorder:hover{
+    background:#563434;
+}
 .header {
     position: relative;
     overflow: hidden;
@@ -428,14 +440,14 @@ td:last-child{
 }
 .form-container{
     background-color: #fff;
-    width:300px;
-    height:400px;
+    width:500px;
+    height:1500px;
     position:relative;
     text-align:center;
     padding:20px 0;
     margin:auto;
-    box-shadow:0 0 20px 0px rgba(0,0,0,0.1);
-    overflow:hidden;
+    /* box-shadow:0 0 20px 0px rgba(0,0,0,0.1); */
+  /* hidd  overflow:en; */
 
 }
 .form-container span{
@@ -450,14 +462,14 @@ td:last-child{
     display:inline-block;
 }
 .form-container form{
-    max-width:300px;
+    max-width:100px;
     padding:0 20px;
     position:absolute;
     top:130px;
     transition:transform 1s;
 }
 form input{
-    width:100%;
+    width:10px;
     height:30px;
     margin:10px 0;
     padding:0 10px;
@@ -465,7 +477,7 @@ form input{
 
 }
 form .btn{
-    width:100%;
+    width:50px;
     border:none;
     cursor:pointer;
     margin:10px 0;
@@ -473,12 +485,29 @@ form .btn{
 form .btn:focus{
     outline:none;
 }
-#login-form{
-    left:-300px;
-
+#login-form {
+    position: absolute; 
+    top: 50%; 
+    left:30%; 
+    transform: translate(-50%, -50%); 
+    width: 10px; 
+    padding: 20px; 
+    background-color: #ffffff; 
+    border-radius: 10px; 
+    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+    /* Add the following properties to move the form down */
+    margin-top: 50px; /* Adjust this value as needed */
 }
+/* 
 #Regform{
     left:0;
+} */
+.container1{
+    width: 500px;
+    height: 500px;
+    background-color: whitesmoke;
+    border-width: 2px;
+    border-color: black;
 }
 form a{
     font-size:12px;

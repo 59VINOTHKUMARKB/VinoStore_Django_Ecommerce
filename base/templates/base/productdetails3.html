@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+{% load static %}
+
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="{% static 'base/css/style.css' %}">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
+        rel="stylesheet">
+    <title>Product Details- VinoStore</title>
+</head>
+
+<body>
+
+    <style>
+
+        select {
+            padding: 10px;
+            font-size: 16px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            background-color: #fff;
+            color: #333;
+            appearance: none;
+            width: 200px;
+        }
+
+        select option {
+            padding: 10px;
+            font-size: 14px;
+            background-color: #f5f5f5;
+            color: #333;
+        }
+
+        select:hover {
+            background-color: #00c3ff75;
+        }
+
+        input {
+            width: 100px;
+            height: 37px;
+        }
+
+    </style>
+
+    <div class="container">
+        <div class="navbar">
+            <div class="logo">
+                <img src="{% static 'base/css/images/Vinostore.jpeg' %}" width="125px">
+            </div>
+            <nav>
+                <ul id="MenuItems">
+                    <li><a href="{% url 'app_name:index' %}">Home</a></li>
+                    <li><a href="{% url 'app_name:product' %}">Products</a></li>
+                    <li><a href="{% url 'app_name:about' %}">About</a></li>
+                    <li><a href="{% url 'app_name:registration' %}">Register</a></li>
+                    <li><a href="{% url 'app_name:login' %}">Login</a></li>
+                    <li><a href="{% url 'app_name:games' %}">Spin Games</a></li>
+                </ul>
+            </nav>
+            <img src="{% static 'base/css/images/cart.png' %}" width="25px" height="25px">
+            <img src="{% static 'base/css/images/menu.png' %}" class="menu-icon" onclick="menutoggle()">
+        </div>
+    </div>
+
+    <!--single-product details-->
+    <div class="small-container single-product">
+        <div class="row">
+            <div class="col-2">
+                <img src="{% static 'base/css/images/product-4.jpg' %}" width="100%" id="Productimg">
+                <div class="small-img-row">
+                    <div class="small-img-col">
+                        <img src="{% static 'base/css/images/product-4.jpg' %}" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{% static 'base/css/images/product-4.jpg' %}" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{% static 'base/css/images/product-4.jpg' %}" width="100%" class="small-img">
+                    </div>
+                    <div class="small-img-col">
+                        <img src="{% static 'base/css/images/product-4.jpg' %}" width="100%" class="small-img">
+                    </div>
+                </div>
+            </div>
+            <div class="col-2">
+                {% for product in products %}
+                    {% if forloop.counter == 4 %}
+                        <p>Home/Shoes</p>
+                            <h1>{{product.product_name}} by Nike</h1>
+                            <h4>${{product.price}}</h4>
+                <select>
+                    <option>Select Size</option>
+                    <option>10</option>
+                    <option>7</option>
+                    <option>12</option>
+                    <option>15</option>
+                </select>
+                <input type="number" value="1">
+                <button class="btn" data-product-id="{{ product.product_id }}">Order Now</button>
+                {% endif %}
+                {% endfor %}
+                <h3>Product Details <i class="fa fa-indent"></i></h3>
+                <br>
+                <p>Introducing our vibrant Red T-Shirt, a wardrobe essential that seamlessly blends comfort and style.
+                    Crafted from premium cotton, this classic piece offers a soft and breathable feel, ensuring maximum
+                    comfort throughout the day. </p>
+            </div>
+        </div>
+    </div>
+
+    <!--title-->
+    <div class="small-container">
+        <div class="row row-2">
+            <h2>Related Products</h2>
+            <p>View More</p>
+        </div>
+    </div>
+    <!--products-->
+    <div class="small-container">
+        <div class="row">
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-11.jpg' %}">
+                <h4>Grey Sneakers</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+
+                </div>
+                <p>$60.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-12.jpg' %}">
+                <h4>Black Joggers</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+
+                </div>
+                <p>$75.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-9.jpg' %}">
+                <h4>Black Watch</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+
+                </div>
+                <p>$250.00</p>
+            </div>
+            <div class="col-4">
+                <img src="{% static 'base/css/images/product-6.jpg' %}">
+                <h4>Formal Black Watch</h4>
+                <div class="rating">
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star"></i>
+                    <i class="fa fa-star-half-o"></i>
+                    <i class="fa fa-star-o"></i>
+
+                </div>
+                <p>$250.00</p>
+            </div>
+        </div>
+    </div>
+
+    <!--footer-->
+    <div class="footer">
+        <div class="container">
+            <div class="row">
+                <div class="footer-col-1">
+                    <h3>Download our App</h3>
+                    <p>Download App for Andriod and IOS Mobiles</p>
+                    <div class="app-logo">
+                        <img src="{% static 'base/css/images/play-store.png' %}">
+                        <img src="{% static 'base/css/images/app-store.png' %}">
+                    </div>
+                </div>
+                <div class="footer-col-2">
+                    <img src="{% static 'base/css/images/Vinostore.jpeg' %}">
+                    <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
+                </div>
+                <div class="footer-col-3">
+                    <h3>Useful Links</h3>
+                    <ul>
+                        <li>Coupons</li>
+                        <li>Return Policy</li>
+                        <li>Blog post</li>
+                        <li>Join Affliates</li>
+                    </ul>
+                </div>
+                <div class="footer-col-4">
+                    <h3>Follow us</h3>
+                    <ul>
+                        <li>FaceBook</li>
+                        <li>Twitter</li>
+                        <li>Instagram</li>
+                        <li>YouTube</li>
+                        <li>Threads</li>
+                    </ul>
+                </div>
+            </div>
+            <hr>
+            <div class="copyright">
+                <p>CopyRight 2023-Vinoth Website</p>
+            </div>
+        </div>
+    </div>
+    <!--js toggle menu-->
+    <script>
+        var MenuItems = document.getElementById("MenuItems");
+        MenuItems.style.maxHeight = "0px";
+
+        function menutoggle() {
+            if (MenuItems.style.maxHeight == "0px") {
+                MenuItems.style.maxHeight = "200px";
+            } else {
+                MenuItems.style.maxHeight = "0px";
+            }
+        }
+    </script>
+
+    <!--js for product gallery-->
+    <script>
+        var Productimg = document.getElementById("Productimg");
+        var Smallimg = document.getElementsByClassName("small-img");
+
+        Smallimg[0].onclick = function () {
+            Productimg.src = Smallimg[0].src;
+        }
+        Smallimg[1].onclick = function () {
+            Productimg.src = Smallimg[1].src;
+        }
+        Smallimg[2].onclick = function () {
+            Productimg.src = Smallimg[2].src;
+        }
+        Smallimg[3].onclick = function () {
+            Productimg.src = Smallimg[3].src;
+        }
+    </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var addToCartButtons = document.querySelectorAll('.btn');
+        
+            addToCartButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var productId = this.getAttribute('data-product-id');
+        
+                    // Send AJAX request to Django view
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '{% url "app_name:add_to_order" %}', true);
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                alert('Successfully Ordered!')
+                                alert(response.message);  // Show success message
+                            } else {
+                                alert('Error: ' + response.message);  // Show error message
+                            }
+                        } else {
+                            alert('Request failed: ' + xhr.status);  // Show error if request failed
+                        }
+                    };
+                    xhr.onerror = function() {
+                        alert('Request failed');  // Show error if request failed
+                    };
+                    xhr.send('product_id=' + productId);
+                });
+            });
+        });
+        </script>
+
+
+</body>
+
+</html>

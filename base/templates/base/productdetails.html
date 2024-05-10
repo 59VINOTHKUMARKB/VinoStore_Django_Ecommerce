@@ -12,7 +12,7 @@
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap"
         rel="stylesheet">
-    <title>Product Details- RedStore</title>
+    <title>Product Details- VinoStore</title>
 </head>
 
 <body>
@@ -51,14 +51,15 @@
     <div class="container">
         <div class="navbar">
             <div class="logo">
-                <img src="{% static 'base/css/images/logo.png' %}" width="125px">
+                <img src="{% static 'base/css/images/Vinostore.jpeg' %}" width="125px">
             </div>
             <nav>
                 <ul id="MenuItems">
                     <li><a href="{% url 'app_name:index' %}">Home</a></li>
                     <li><a href="{% url 'app_name:product' %}">Products</a></li>
                     <li><a href="{% url 'app_name:about' %}">About</a></li>
-                    <li><a href="{% url 'app_name:account' %}">Account</a></li>
+                    <li><a href="{% url 'app_name:registration' %}">Register</a></li>
+                    <li><a href="{% url 'app_name:login' %}">Login</a></li>
                     <li><a href="{% url 'app_name:games' %}">Spin Games</a></li>
                 </ul>
             </nav>
@@ -88,9 +89,13 @@
                 </div>
             </div>
             <div class="col-2">
+                
+                {% for product in products %}
+                {% if forloop.counter <= 1 %}
                 <p>Home/T Shirt</p>
-                <h1>Red Printed T-Shirt by Raymond</h1>
-                <h4>$40.00</h4>
+                <h1>{{product.product_name}} by Raymond</h1>
+                <h4>${{product.price}}</h4>
+                
                 <select>
                     <option>Select Size</option>
                     <option>XXL</option>
@@ -99,7 +104,9 @@
                     <option>Small S</option>
                 </select>
                 <input type="number" value="1">
-                <a href="" class="btn">ADD TO CART</a>
+                <button class="btn" data-product-id="{{ product.product_id }}">Order Now</button>
+                {% endif %}
+                {% endfor %}
                 <h3>Product Details <i class="fa fa-indent"></i></h3>
                 <br>
                 <p>Introducing our vibrant Red T-Shirt, a wardrobe essential that seamlessly blends comfort and style.
@@ -159,7 +166,7 @@
                 <p>$250.00</p>
             </div>
             <div class="col-4">
-                <img src="{% static 'base/css/images/product-8.jpg' %}">
+                <img src="{% static 'base/css/images/product-6.jpg' %}">
                 <h4>Formal Black Watch</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
@@ -187,7 +194,7 @@
                     </div>
                 </div>
                 <div class="footer-col-2">
-                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <img src="{% static 'base/css/images/Vinostore.jpeg' %}">
                     <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
                 </div>
                 <div class="footer-col-3">
@@ -248,6 +255,41 @@
             Productimg.src = Smallimg[3].src;
         }
     </script>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var addToCartButtons = document.querySelectorAll('.btn');
+        
+            // Attach click event listener to each button
+            addToCartButtons.forEach(function(button) {
+                button.addEventListener('click', function() {
+                    var productId = this.getAttribute('data-product-id');
+        
+                    // Send AJAX request to Django view
+                    var xhr = new XMLHttpRequest();
+                    xhr.open('POST', '{% url "app_name:add_to_order" %}', true);
+                    xhr.setRequestHeader('X-CSRFToken', '{{ csrf_token }}');
+                    xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded');
+                    xhr.onload = function() {
+                        if (xhr.status >= 200 && xhr.status < 300) {
+                            var response = JSON.parse(xhr.responseText);
+                            if (response.success) {
+                                alert('Successfully Ordered!')
+                                alert(response.message);  // Show success message
+                            } else {
+                                alert('Error: ' + response.message);  // Show error message
+                            }
+                        } else {
+                            alert('Request failed: ' + xhr.status);  // Show error if request failed
+                        }
+                    };
+                    xhr.onerror = function() {
+                        alert('Request failed');  // Show error if request failed
+                    };
+                    xhr.send('product_id=' + productId);
+                });
+            });
+        });
+        </script>
 
 </body>
 

@@ -9,21 +9,22 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap" rel="stylesheet">
-    <title>My First Website</title>
+    <title>My First Website - VinoStore</title>
 </head>
 <body>
     <div class="header">
         <div class="container">
             <div class="navbar">
                 <div class="logo">
-                    <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/logo.png' %}" width="125px"></a>
+                    <a href="{% url 'app_name:index' %}"><img src="{% static 'base/css/images/Vinostore.jpeg' %}" width="125px"></a>
                 </div>
                 <nav>
                     <ul id="MenuItems">
                         <li><a href="{% url 'app_name:index' %}">Home</a></li>
                         <li><a href="{% url 'app_name:product' %}">Products</a></li>
                         <li><a href="{% url 'app_name:about' %}">About Us</a></li>
-                        <li><a href="{% url 'app_name:account' %}">Account</a></li>
+                        <li><a href="{% url 'app_name:registration' %}">Register</a></li>
+                        <li><a href="{% url 'app_name:login' %}">Login</a></li>
                         <li><a href="{% url 'app_name:games' %}">Spin Game</a></li>
                     </ul>
                 </nav>
@@ -34,7 +35,7 @@
                 <div class="col-2">
                     <h1>Unleash Your Unique Elegance</h1>
                     <p>We invite you to explore a shopping experience like no other, where innovation and affordability converge, providing you with not just products, but a journey of self-expression. Unique taste meets our commitment to quality Om, where your style story begins.</p>
-                    <a href="" class="btn">Explore Now &#10132;</a>
+                    <a href="{% url 'app_name:product' %}" class="btn">Explore Now &#10132;</a>
                 </div>
                 <div class="col-2">
                     <video autoplay loop muted id="video-background">
@@ -203,7 +204,7 @@
                 <p>$250.00</p>
             </div>
             <div class="col-4">
-                <img src="{% static 'base/css/images/product-8.jpg' %}">
+                <img src="{% static 'base/css/images/product-6.jpg' %}">
                 <h4>Formal Black Watch</h4>
                 <div class="rating">
                     <i class="fa fa-star"></i>
@@ -224,7 +225,7 @@
                     <img src="{% static 'base/css/images/exclusive.png' %}" class="offer-img">
                 </div>
                 <div class="col-2">
-                    <p>Exclusively Available on Om Store</p>
+                    <p>Exclusively Available on Red Store</p>
                     <h1>Smart Band 5</h1>
                     <small>Discover the future on your wrist with the MI Smart Band. Elevate your lifestyle with the perfect blend of style and functionality. <br>Immerse yourself in cutting-edge technology that goes beyond timekeeping.</small>
                     <a href="" class="btn">Buy Now &#10132;</a>
@@ -313,7 +314,7 @@
                     </div>
                 </div>
                 <div class="footer-col-2">
-                    <img src="{% static 'base/css/images/logo-white.png' %}">
+                    <img src="{% static 'base/css/images/Vinostore.jpeg' %}">
                     <p>Shop Smart, Live Stylishly: Your One-Stop E-destination for Fashion and Function.</p>
                 </div>
                 <div class="footer-col-3">
